@@ -1,0 +1,43 @@
+{
+  "start_year_loaded_data": 2019,
+  "column_list": [
+    "AL",
+    "AU",
+    "AE",
+    "Kp",
+    "p_flow",
+    "n_p",
+    "n_plasma",
+    "v_plasma",
+    "R",
+    "f107_adj",
+    "Dst"
+  ],
+  "upper_bound_validate": {
+    "AL": 0,
+    "AU": 1500,
+    "AE": 3000,
+    "Kp": 9.0,
+    "p_flow": 99.0,
+    "n_p": 900.0,
+    "n_plasma": 900,
+    "v_plasma": 9900.0,
+    "R": 400.0,
+    "f107_adj": 500,
+    "Dst": 100
+  },
+  "lower_bound_validate": {
+    "AL": -3000,
+    "AU": 0,
+    "AE": 0,
+    "Kp": 0.0,
+    "p_flow": 0.0,
+    "n_p": 0.0,
+    "n_plasma": 0,
+    "v_plasma": 0.0,
+    "R": 0.0,
+    "f107_adj": 0,
+    "Dst": -500
+  }
+}
+
