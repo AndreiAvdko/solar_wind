@@ -11,5 +11,7 @@ setup(
         'pandas',
         'numpy',
         'matplotlib',
+        'requests',
+        'pytest'
     ],
 )

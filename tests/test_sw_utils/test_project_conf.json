@@ -1,0 +1,21 @@
+{
+  "original_data_path": "\\original_data\\",
+  "clean_data_path": "\\clean_data\\",
+  "training_model_path": "\\model\\",
+
+  "start_year_loaded_data": 2000,
+  "column_list": [
+    "AL",
+    "AU",
+    "AE"
+  ],
+  "upper_bound_validate": {
+    "AL": 0,
+    "AU": 1500
+  },
+  "lower_bound_validate": {
+    "AL": -3000,
+    "AU": 0
+  }
+}
+

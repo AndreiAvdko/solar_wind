@@ -1,0 +1,3 @@
+import load_training_data
+
+load_training_data.load_newest()

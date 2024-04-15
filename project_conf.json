@@ -1,5 +1,9 @@
 {
-  "start_year_loaded_data": 2019,
+  "original_data_path": "\\original_data\\",
+  "clean_data_path": "\\clean_data\\",
+  "training_model_path": "\\model\\",
+
+  "start_year_loaded_data": 2000,
   "column_list": [
     "AL",
     "AU",
