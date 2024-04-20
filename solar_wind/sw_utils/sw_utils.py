@@ -37,6 +37,11 @@ def get_start_data(path=None) -> int:
 
 
 def get_dataset_var_set(path=None):
+    """
+    Метод получения списка названий обязательных колонок с данными для обучения модели или получения предсказания
+    :param path: Путь к файлу конфигурации, по умолчанию используется путь к конфигурации в корне пакета
+    :return: List[String]
+    """
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
     column_set = list(config_data['column_list'])

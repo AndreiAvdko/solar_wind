@@ -1,11 +1,9 @@
 import os
 import shutil
+from solar_wind.sw_utils import sw_utils as swu
 
-import pytest
-import sw_utils as swu
 
-test_conf_path = "\\tests\\test_sw_utils\\test_project_conf.json"
-root_project_relative_path = "\\..\\..\\"
+test_conf_path = "\\solar_wind\\test\\test_project_conf.json"
 
 
 def test_get_conf_path():

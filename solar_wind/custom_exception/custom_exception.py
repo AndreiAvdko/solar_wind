@@ -4,3 +4,7 @@ class MissingColumnsError(Exception):
 
 class EmptyDataFrameError(Exception):
     pass
+
+
+class IncorrectTimestamps(Exception):
+    pass
