@@ -59,7 +59,7 @@ def check_omnie_resource_availability():
 
 
 def load_df_with_original_data(start=swu.get_start_data(),
-                               year_count=1,
+                               year_count=datetime.datetime.now().year - swu.get_start_data(),
                                path=swu.get_original_data_path()):
     """
     Функция получения датафрейма из загруженных данных о солнечном ветре
@@ -76,7 +76,7 @@ def load_df_with_original_data(start=swu.get_start_data(),
         df_hplot = sw.omnie_hourly(start + i + 1, cache=True, local_path=path)
         original_data_df = pd.concat([original_data_df, df_hplot])
 
-    # TODO удалить функциональность отрисовки графика
+    # # TODO удалить функциональность отрисовки графика
     # # отрисовываем график
     # plt.plot(original_data_df[["v_plasma"]])
     # plt.title(f"Значения скорости солнечного ветра за {start} - {start + year_count} гг.")

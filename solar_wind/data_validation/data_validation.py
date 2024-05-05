@@ -1,5 +1,5 @@
 import pandas as pd
-
+import matplotlib.pyplot as plt
 from solar_wind.custom_exception import MissingColumnsError, IncorrectTimestamps
 from solar_wind.sw_utils import sw_utils as swu
 import numpy as np
@@ -17,6 +17,7 @@ class DataValidator:
         Последовательный вызов методов для проверки данных
         Args:
         df (pd.Dataframe): Параметр, представляющий собой dataframe с данными о солнечном ветре.
+        fill_missing_by_interpolate (bool): Заполнять ли пропущенные значения линейной интерполяцией
         :return: pandas.DataFrame с очищенными данными
         """
         # TODO реализовать функцию, удалить после реализации
@@ -24,12 +25,16 @@ class DataValidator:
         validator.__df = df
         # Вызываем методы в нужной последовательности
         print("call check_data")
-        return ((validator
-                 .__check_columns()
-                 .__check_and_process_timestamp()
-                 .__check_and_process_outliers()
-                 .__check_missing_values(fill_missing_by_interpolate))
-                .__df)
+        clean_df = ((validator
+                     .__check_columns()
+                     .__check_and_process_timestamp()
+                     .__check_and_process_outliers()
+                     .__check_missing_values(fill_missing_by_interpolate))
+                    .__df)
+        # plt.plot(clean_df[["v_plasma"]])
+        # plt.title(f"Значения скорости солнечного ветра")
+        # plt.show()
+        return clean_df
 
     def __check_and_process_timestamp(self):
         """
@@ -68,7 +73,8 @@ class DataValidator:
         # Заменяем все значения вне заданных границ на NaN
         for column in self.__df.columns:
             if column in lower_bound:
-                self.__df.loc[(self.__df[column] < lower_bound[column]) | (self.__df[column] > upper_bound[column]), column] = np.nan
+                self.__df.loc[(self.__df[column] < lower_bound[column]) | (
+                            self.__df[column] > upper_bound[column]), column] = np.nan
         print("call check_and_process_outliers")
         return self
 

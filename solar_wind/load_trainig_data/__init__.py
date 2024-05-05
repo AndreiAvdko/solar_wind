@@ -1,0 +1,1 @@
+from solar_wind.load_trainig_data import load_training_data

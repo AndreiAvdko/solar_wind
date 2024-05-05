@@ -16,7 +16,9 @@ def test_check_columns():
     root_project_path = swu.get_conf_path(only_root_path=True)
     df = load_training_data.load_df_with_original_data(2000,
                                                        1,
-                                                       root_project_path + testsuit_dataset_base_path + "\\all_required_column")
+                                                       root_project_path +
+                                                       testsuit_dataset_base_path +
+                                                       "\\all_required_column")
     assert df.shape == (2, 57)
     # print(f"Список исходных колонок {df.columns}")
     clean_df = DataValidator.check_and_clean_data(df)
@@ -33,7 +35,9 @@ def test_check_missing_columns():
     для dataframe c отсутствующей колонкой
     """
     root_project_path = swu.get_conf_path(only_root_path=True)
-    df = pd.read_csv(root_project_path + testsuit_dataset_base_path + "\\missing_columns\\omni2_2000.csv")
+    df = pd.read_csv(root_project_path +
+                     testsuit_dataset_base_path +
+                     "\\missing_columns\\omni2_2000.csv")
 
     # Проверяем, что столбца AU нет в исходном df
     assert df.shape == (2, 11)
@@ -48,8 +52,11 @@ def test_check_loading_with_correct_timestamps():
     Проверяем загрузку dataframe с корректными временными метками
     """
     root_project_path = swu.get_conf_path(only_root_path=True)
-    df = pd.read_csv(root_project_path + testsuit_dataset_base_path + "\\correct_timestamps\\omni2_2000.csv",
-                     index_col=0, parse_dates=True)
+    df = pd.read_csv(root_project_path +
+                     testsuit_dataset_base_path +
+                     "\\correct_timestamps\\omni2_2000.csv",
+                     index_col=0,
+                     parse_dates=True)
 
     df = DataValidator.check_and_clean_data(df)
     assert df.shape == (9, 11)
@@ -63,8 +70,11 @@ def test_check_loading_and_filling_df_with_missing_intermediate_timestamps():
     Проверяем заполнение индекса временных меток интерполяцией и пустыми значениями для колонок
     """
     root_project_path = swu.get_conf_path(only_root_path=True)
-    df = pd.read_csv(root_project_path + testsuit_dataset_base_path + "\\missing_timestamps\\omni2_2000.csv",
-                     index_col=0, parse_dates=True)
+    df = pd.read_csv(root_project_path +
+                     testsuit_dataset_base_path +
+                     "\\missing_timestamps\\omni2_2000.csv",
+                     index_col=0,
+                     parse_dates=True)
 
     df = DataValidator.check_and_clean_data(df)
 
@@ -80,8 +90,11 @@ def test_check_and_process_outliers():
     В проверочном датасете данные подобраны так, чтобы все строки начиная со 2 принимали значение NaN
     """
     root_project_path = swu.get_conf_path(only_root_path=True)
-    df = pd.read_csv(root_project_path + testsuit_dataset_base_path + "\\with_outliers\\omni2_2000.csv",
-                     index_col=0, parse_dates=True)
+    df = pd.read_csv(root_project_path +
+                     testsuit_dataset_base_path +
+                     "\\with_outliers\\omni2_2000.csv",
+                     index_col=0,
+                     parse_dates=True)
     df = DataValidator.check_and_clean_data(df)
 
     # Выбираем строки начиная со второй строки
@@ -109,13 +122,17 @@ def test_check_missing_values(fill_missing_by_interpolate, expected):
     и без нее
     """
     root_project_path = swu.get_conf_path(only_root_path=True)
-    df = pd.read_csv(root_project_path + testsuit_dataset_base_path + "\\missing_values\\omni2_2000.csv",
-                     index_col=0, parse_dates=True)
+    df = pd.read_csv(root_project_path +
+                     testsuit_dataset_base_path +
+                     "\\missing_values\\omni2_2000.csv",
+                     index_col=0,
+                     parse_dates=True)
     # Проверяем кол-во пропущенных значений до заполнения
     assert df.shape == (9, 11)
     assert df.isnull().sum().sum() == 45
 
-    df = DataValidator.check_and_clean_data(df, fill_missing_by_interpolate=fill_missing_by_interpolate)
+    df = DataValidator.check_and_clean_data(df,
+                                            fill_missing_by_interpolate=fill_missing_by_interpolate)
 
     # Проверяем кол-во пропущенных значений после заполнения
     assert df.isnull().sum().sum() == expected

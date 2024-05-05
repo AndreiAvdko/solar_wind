@@ -2,7 +2,7 @@
   "original_data_path": "\\original_data\\",
   "clean_data_path": "\\clean_data\\",
   "training_model_path": "\\model\\",
-
+  "predict_horizon": 72,
   "start_year_loaded_data": 2000,
   "column_list": [
     "AL",
@@ -42,6 +42,23 @@
     "R": 0.0,
     "f107_adj": 0,
     "Dst": -500
-  }
+  },
+  "target": [
+    "timestamp",
+    "v_plasma"
+  ],
+  "regressors_list": [
+    "timestamp",
+    "AL",
+    "AU",
+    "AE",
+    "Kp",
+    "p_flow",
+    "n_p",
+    "n_plasma",
+    "R",
+    "f107_adj",
+    "Dst"
+  ]
 }
 

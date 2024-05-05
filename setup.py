@@ -7,6 +7,7 @@ setup(
     packages=['your_package'],
     install_requires=[
         'etna',
+        'etna[auto]',
         'spaceweather',
         'pandas',
         'numpy',

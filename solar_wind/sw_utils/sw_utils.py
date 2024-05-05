@@ -1,6 +1,8 @@
 import json
 import os
 
+from matplotlib import pyplot as plt
+
 
 def get_original_data_path(path=None):
     current_directory = get_conf_path(only_root_path=True)
@@ -36,6 +38,13 @@ def get_start_data(path=None) -> int:
     return start_year
 
 
+def get_predict_horizon() -> int:
+    with open(get_conf_path()) as file:
+        config_data = json.load(file)
+    predict_horizon = config_data['predict_horizon']
+    return predict_horizon
+
+
 def get_dataset_var_set(path=None):
     """
     Метод получения списка названий обязательных колонок с данными для обучения модели или получения предсказания
@@ -46,6 +55,30 @@ def get_dataset_var_set(path=None):
         config_data = json.load(file)
     column_set = list(config_data['column_list'])
     return column_set
+
+
+def get_target_list(path=None):
+    """
+    Метод получения списка названий обязательных колонок с данными для обучения модели или получения предсказания
+    :param path: Путь к файлу конфигурации, по умолчанию используется путь к конфигурации в корне пакета
+    :return: List[String]
+    """
+    with open(get_conf_path(path)) as file:
+        config_data = json.load(file)
+    target_list = list(config_data['target'])
+    return target_list
+
+
+def get_regressors_list(path=None):
+    """
+    Метод получения списка названий обязательных колонок с данными для обучения модели или получения предсказания
+    :param path: Путь к файлу конфигурации, по умолчанию используется путь к конфигурации в корне пакета
+    :return: List[String]
+    """
+    with open(get_conf_path(path)) as file:
+        config_data = json.load(file)
+    regressors_list = list(config_data['regressors_list'])
+    return regressors_list
 
 
 def get_upper_bound_outliers(path=None):
@@ -79,3 +112,15 @@ def get_conf_path(path=None, only_root_path=False) -> str:
     else:
         return path
 
+
+# TODO метод для вывода данных о df, удалить
+def print_df_data(title, df):
+    print(title)
+    print(df)
+
+
+# TODO метод для отрисовки графика, удалить
+def show_df_plot(plot_title, df):
+    plt.plot(df)
+    plt.title(plot_title)
+    plt.show()
