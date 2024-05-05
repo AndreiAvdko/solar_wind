@@ -176,4 +176,3 @@ def load_newest_data():
     Функция загрузки новых данных о солнечном ветре с ресурса OMNIE
     """
     lt_data.load_newest()
-сос
