@@ -1,10 +1,10 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='solar_wind',
     version='0.1',
     python_requires='>=3.8.0, <3.11.0',
-    packages=['your_package'],
+    packages=find_packages(),
     install_requires=[
         'etna',
         'etna[auto]',
