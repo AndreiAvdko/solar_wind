@@ -1,9 +1,6 @@
-import pandas
 import pandas as pd
 from etna.core import load
 from etna.analysis import plot_backtest
-import numpy as np
-from etna.datasets import TSDataset
 from etna.metrics import SMAPE, MSE, MAE
 from etna.transforms import MeanTransform, StandardScalerTransform, LagTransform, MinMaxScalerTransform
 import matplotlib.pyplot as plt
@@ -18,7 +15,7 @@ from etna.pipeline import Pipeline, AutoRegressivePipeline
 model_file_name = "catboost_model.pkl"
 
 
-def get_forecast(df: pandas.DataFrame = None, with_plot: bool = False) -> pd.DataFrame:
+def get_forecast(df: pd.DataFrame = None, with_plot: bool = False) -> pd.DataFrame:
     """
     Функция получения предсказания о солнечном ветре
     :param df: pandas.DataFrame с данными для которых нужно получить предсказание
