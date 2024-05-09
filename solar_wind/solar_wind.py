@@ -176,3 +176,9 @@ def load_newest_data():
     Функция загрузки новых данных о солнечном ветре с ресурса OMNIE
     """
     lt_data.load_newest()
+
+
+# TODO удалить функцию проверки установки модуля
+def check_module_function(): {
+    print("Функция успешно выполнена")
+}
