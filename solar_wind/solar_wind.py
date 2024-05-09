@@ -4,6 +4,7 @@ from etna.analysis import plot_backtest
 from etna.metrics import SMAPE, MSE, MAE
 from etna.transforms import MeanTransform, StandardScalerTransform, LagTransform, MinMaxScalerTransform
 import matplotlib.pyplot as plt
+import solar_wind.solar_wind
 from solar_wind.load_trainig_data import load_training_data as lt_data
 from solar_wind.data_validation import DataValidator
 from solar_wind.data_trasformer import data_transformer as data_trsfrm
@@ -65,7 +66,7 @@ def additional_model_training(iterations: int,
     regressors_list = swu.get_regressors_list()
 
     if train_df is None:
-        load_newest_data()
+        solar_wind.solar_wind.load_newest_data()
         df = lt_data.load_df_with_original_data(start=start_year,
                                                 year_count=end_year - start_year)
     else:
