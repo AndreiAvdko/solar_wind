@@ -101,6 +101,8 @@ def create_folder_if_not_exist(folder_path):
 
 
 def get_conf_path(path=None, only_root_path=False) -> str:
+    # TODO Удалить отладку
+    print(os.getcwd())
     if path is None:
         root_project_dir = os.getcwd()
         while not os.path.exists(os.path.join(root_project_dir, 'project_conf.json')):
