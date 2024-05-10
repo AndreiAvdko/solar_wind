@@ -5,6 +5,7 @@ setup(
     version='0.1',
     python_requires='>=3.8.0, <3.11.0',
     packages=find_packages(),
+    include_package_data=True,
     install_requires=[
         'etna',
         'etna[auto]',
