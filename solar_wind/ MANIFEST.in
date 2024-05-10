@@ -1,5 +1,5 @@
 graft test_data
+graft /solar_wind/test/test_data_validation/test_data
 include *.json
 include *.csv
 include *.dat
-
