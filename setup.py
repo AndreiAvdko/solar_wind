@@ -8,6 +8,7 @@ setup(
     package_data={
         '': ['*.json', '*.dat', '*.csv']
     },
+    include_package_data=True,
     install_requires=[
         'etna',
         'etna[auto]',
