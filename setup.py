@@ -6,10 +6,11 @@ setup(
     python_requires='>=3.8.0, <3.11.0',
     packages=find_packages(),
     # package_dir={"": "solar_wind "}, возникает ошибка
-    # include_package_data=True,
-    # package_data={
-    #     '': ['*.json', '*.dat', '*.csv', 'test_data/*.json', 'test_data/*.dat', 'test_data/*.csv'],
-    # },
+    include_package_data=True,
+    package_data={
+        '': ['*.json', '*.dat', '*.csv'],
+        'test_data_validation.test_data.correct_timestamps': ["*.csv"],
+    },
     install_requires=[
         'etna',
         'etna[auto]',
