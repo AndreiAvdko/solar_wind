@@ -1,1 +1,5 @@
-graft test_data_validation/test_data
+graft test_data
+include *.json
+include *.csv
+include *.dat
+
