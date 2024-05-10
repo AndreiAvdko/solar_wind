@@ -4,7 +4,7 @@ setup(
     name='solar_wind',
     version='0.1',
     python_requires='>=3.8.0, <3.11.0',
-    packages=find_namespace_packages(where="solar_wind"),
+    packages=find_namespace_packages(),
     # package_dir={"": "solar_wind"}, возникает ошибка
     include_package_data=True,
     package_data={
