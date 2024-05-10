@@ -102,10 +102,10 @@ def create_folder_if_not_exist(folder_path):
 
 def get_conf_path(path=None, only_root_path=False) -> str:
     # TODO Удалить отладку
-    print(f"Это абсолютный путь до скрипта: {os.path.abspath(__file__)}")
+    print(f"Это абсолютный путь до скрипта: {os.path.dirname(os.path.abspath(__file__))}")
 
     if path is None:
-        root_project_dir = os.path.abspath(__file__) # TODO os.getcwd()
+        root_project_dir = os.path.dirname(os.path.abspath(__file__)) # TODO os.getcwd()
         while not os.path.exists(os.path.join(root_project_dir, 'project_conf.json')):
             # TODO Удалить отладку
             print(f"Проверяем этот путь {os.path.join(root_project_dir, 'project_conf.json')}")
