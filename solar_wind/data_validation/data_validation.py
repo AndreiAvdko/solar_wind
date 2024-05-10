@@ -1,3 +1,5 @@
+import datetime
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from solar_wind.custom_exception import MissingColumnsError, IncorrectTimestamps
@@ -34,6 +36,7 @@ class DataValidator:
         # plt.plot(clean_df[["v_plasma"]])
         # plt.title(f"Значения скорости солнечного ветра")
         # plt.show()
+        clean_df.to_csv(f'{swu.get_clean_data_path()}clean_data_for_predict_from_{datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")}.csv', index=False)
         return clean_df
 
     def __check_and_process_timestamp(self):
