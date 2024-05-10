@@ -1,5 +1,6 @@
 import json
 import os
+import datetime
 import pandas as pd
 import warnings
 from matplotlib import pyplot as plt
@@ -30,6 +31,15 @@ def get_model_path(path=None):
     training_model_path = current_directory + config_data['training_model_path']
     create_folder_if_not_exist(training_model_path)
     return training_model_path
+
+
+def get_prediction_artefacts_path(path=None):
+    current_directory = get_conf_path(only_root_path=True)
+    with open(get_conf_path(path)) as file:
+        config_data = json.load(file)
+    prediction_artefacts_path = current_directory + config_data['prediction_artefacts_path']
+    create_folder_if_not_exist(prediction_artefacts_path)
+    return prediction_artefacts_path
 
 
 def get_model_file_name():
@@ -80,7 +90,6 @@ def get_target_list(path=None):
 def get_regressors_list(path=None):
     """
     Метод получения списка названий обязательных колонок с данными для обучения модели или получения предсказания
-    :param path: Путь к файлу конфигурации, по умолчанию используется путь к конфигурации в корне пакета
     :return: List[String]
     """
     with open(get_conf_path(path)) as file:
@@ -132,7 +141,9 @@ def show_df_plot(plot_title, prediction_df, df_with_was_predicted, real_values: 
                  label='Реальные значения')
     plt.title(plot_title)
     plt.legend()
+    plt.savefig(f'{get_prediction_artefacts_path()}prediction_plot_{datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")}.png')
     plt.show()
+
 
 
 def ignore_warnings(func):
