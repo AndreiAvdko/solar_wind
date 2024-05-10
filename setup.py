@@ -1,5 +1,4 @@
 from setuptools import setup, find_namespace_packages
-import warnings
 
 setup(
     name='solar_wind',
@@ -21,4 +20,3 @@ setup(
         'pytest'
     ],
 )
-warnings.filterwarnings('ignore')

@@ -1,6 +1,7 @@
 import json
 import os
-
+import pandas as pd
+import warnings
 from matplotlib import pyplot as plt
 
 
@@ -120,14 +121,24 @@ def get_conf_path(path=None, only_root_path=False) -> str:
         return path
 
 
-# TODO метод для вывода данных о df, удалить
-def print_df_data(title, df):
-    print(title)
-    print(df)
-
-
-# TODO метод для отрисовки графика, удалить
-def show_df_plot(plot_title, df):
-    plt.plot(df)
+# TODO метод для отрисовки графика
+def show_df_plot(plot_title, prediction_df, df_with_was_predicted, real_values: pd.DataFrame = None):
+    plt.plot(prediction_df,
+             label="Предсказанные значения")
+    plt.plot(df_with_was_predicted["v_plasma"].tail(20),
+             label='Последние известные значения')
+    if real_values is not None:
+        plt.plot(real_values["v_plasma"],
+                 label='Реальные значения')
     plt.title(plot_title)
+    plt.legend()
     plt.show()
+
+
+def ignore_warnings(func):
+    def wrapper(*args, **kwargs):
+        warnings.filterwarnings('ignore')
+        warnings.filterwarnings('ignore', category=UserWarning)
+        warnings.filterwarnings('ignore', category=RuntimeWarning)
+        return func(*args, **kwargs)
+    return wrapper

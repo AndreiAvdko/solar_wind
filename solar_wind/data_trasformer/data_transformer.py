@@ -5,20 +5,15 @@ from etna.transforms import TimeSeriesImputerTransform
 
 def dataframe_to_TSDataset(clean_df,
                            target_list,
-                           regressors_list,
-                           using_measure_points:int =None) -> TSDataset:
+                           regressors_list) -> TSDataset:
     """
     :param clean_df: pandas dataframe с исходными данными
-    :param using_measure_points: количество точек измерения
     :param target_list: список целевой переменной для предсказания
     :param regressors_list: список переменных регрессоров
     :return: TSDataset
     """
     # Получаем очищенные данные
     df = clean_df.copy()
-    if using_measure_points is not None:
-        df = df.head(using_measure_points)
-    # df = df.head(using_measure_points)
     # Сбрасываем индекс и переименовываем в timestamp
     df = df.reset_index()
     df.rename(columns={'index': 'timestamp'}, inplace=True)

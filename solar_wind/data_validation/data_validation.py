@@ -1,8 +1,6 @@
-import datetime
-
-import pandas as pd
-import matplotlib.pyplot as plt
 from solar_wind.custom_exception import MissingColumnsError, IncorrectTimestamps
+import datetime
+import pandas as pd
 from solar_wind.sw_utils import sw_utils as swu
 import numpy as np
 
@@ -22,20 +20,14 @@ class DataValidator:
         fill_missing_by_interpolate (bool): Заполнять ли пропущенные значения линейной интерполяцией
         :return: pandas.DataFrame с очищенными данными
         """
-        # TODO реализовать функцию, удалить после реализации
         validator = DataValidator()
         validator.__df = df
-        # Вызываем методы в нужной последовательности
-        print("call check_data")
         clean_df = ((validator
                      .__check_columns()
                      .__check_and_process_timestamp()
                      .__check_and_process_outliers()
                      .__check_missing_values(fill_missing_by_interpolate))
                     .__df)
-        # plt.plot(clean_df[["v_plasma"]])
-        # plt.title(f"Значения скорости солнечного ветра")
-        # plt.show()
         clean_df.to_csv(f'{swu.get_clean_data_path()}clean_data_for_predict_from_{datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")}.csv', index=True)
         return clean_df
 
@@ -45,7 +37,6 @@ class DataValidator:
         Дополняет пропущенные метки, заполняя пропущенные значения для столбцов на NaN
         Упорядочивает временные метки
         """
-        # TODO проверить упорядоченность временных меток
         try:
             self.__df.index = pd.to_datetime(self.__df.index)
         except:
@@ -63,7 +54,6 @@ class DataValidator:
             # Заменяем значения для интерполированных строк на NaN
             for index in interpolated_rows:
                 self.__df.loc[index, self.__df.columns != self.__df.index.name] = None
-        print("call check_and_process_timestamp")
         return self
 
     def __check_and_process_outliers(self):
@@ -78,7 +68,6 @@ class DataValidator:
             if column in lower_bound:
                 self.__df.loc[(self.__df[column] < lower_bound[column]) | (
                             self.__df[column] > upper_bound[column]), column] = np.nan
-        print("call check_and_process_outliers")
         return self
 
     def __check_missing_values(self, fill_missing_by_interpolate=False):
@@ -91,7 +80,6 @@ class DataValidator:
             self.__df.fillna(self.__df.interpolate(method='linear'), inplace=True, limit=0)
             # Если были пропущены первые значения - заполняем последующими непропущенными значениями в столбце
             self.__df.fillna(self.__df.interpolate(method='backfill'), inplace=True)
-        print("call check_missing_values")
         return self
 
     def __check_columns(self):

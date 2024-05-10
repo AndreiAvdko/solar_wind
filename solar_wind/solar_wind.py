@@ -1,3 +1,4 @@
+import pandas
 import pandas as pd
 from etna.core import load
 from etna.analysis import plot_backtest
@@ -9,11 +10,15 @@ from solar_wind.load_trainig_data import load_training_data as lt_data
 from solar_wind.data_validation import DataValidator
 from solar_wind.data_trasformer import data_transformer as data_trsfrm
 from solar_wind.sw_utils import sw_utils as swu
+from solar_wind.sw_utils.sw_utils import ignore_warnings
 from etna.models import CatBoostPerSegmentModel, ElasticPerSegmentModel, LinearPerSegmentModel
 from etna.pipeline import Pipeline, AutoRegressivePipeline
 
 
-def get_forecast(df: pd.DataFrame = None, with_plot: bool = False) -> pd.DataFrame:
+@ignore_warnings
+def get_forecast(df: pd.DataFrame = None,
+                 with_plot: bool = False,
+                 real_values: pandas.DataFrame = None) -> pd.DataFrame:
     """
     Функция получения предсказания о солнечном ветре
     :param df: pandas.DataFrame с данными для которых нужно получить предсказание
@@ -39,8 +44,11 @@ def get_forecast(df: pd.DataFrame = None, with_plot: bool = False) -> pd.DataFra
     predict.to_csv("C:\\Users\\andre\\PycharmProjects\\solar_wind\\predictions\\prediction.csv")
     # Отрисовываем график
     if with_plot:
-        swu.show_df_plot("Предсказанные значения солнечного ветра", predict['segment_0']['target'])
-    return predict
+        swu.show_df_plot(plot_title="Предсказанные значения солнечного ветра",
+                         prediction_df=predict['segment_0']['target'],
+                         df_with_was_predicted=df,
+                         real_values=real_values)
+    return predict['segment_0']['target']
 
 
 def additional_model_training(iterations: int,
@@ -159,7 +167,7 @@ def additional_model_training(iterations: int,
     plot_backtest(forecast_df, etna_df)
     plt.show(block=True)
 
-    pipeline.save(swu.get_model_path() + model_file_name)
+    pipeline.save(swu.get_model_path() + swu.get_model_file_name())
     print("Модель обучена")
     return metrics_df
     # TODO реализовать сравнение точности с текущей моделью
@@ -167,12 +175,6 @@ def additional_model_training(iterations: int,
 
 def load_newest_data():
     """
-    Функция загрузки новых данных о солнечном ветре с ресурса OMNIE
+    Функция загрузки последних актуальных данных о солнечном ветре с ресурса OMNIE
     """
     lt_data.load_newest()
-
-
-# TODO удалить функцию проверки установки модуля
-def check_module_function(): {
-    print("Функция успешно выполнена")
-}
