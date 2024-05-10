@@ -12,13 +12,6 @@ from solar_wind.sw_utils import sw_utils as swu
 from etna.models import CatBoostPerSegmentModel, ElasticPerSegmentModel, LinearPerSegmentModel
 from etna.pipeline import Pipeline, AutoRegressivePipeline
 
-__all__ = ['get_forecast',
-           'additional_model_training',
-           'load_newest_data',
-           'check_module_function']
-
-model_file_name = "catboost_model.zip"
-
 
 def get_forecast(df: pd.DataFrame = None, with_plot: bool = False) -> pd.DataFrame:
     """
@@ -33,7 +26,7 @@ def get_forecast(df: pd.DataFrame = None, with_plot: bool = False) -> pd.DataFra
     target_list = swu.get_target_list()
     regressors_list = swu.get_regressors_list()
     # Загружаем сохраненную модель
-    pipe = load(swu.get_model_path() + model_file_name)
+    pipe = load(swu.get_model_path() + swu.get_model_file_name())
     print(pipe.to_dict())
 
     df_for_predict = DataValidator.check_and_clean_data(df, fill_missing_by_interpolate=True)

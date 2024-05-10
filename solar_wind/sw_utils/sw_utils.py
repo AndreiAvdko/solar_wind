@@ -31,6 +31,13 @@ def get_model_path(path=None):
     return training_model_path
 
 
+def get_model_file_name():
+    with open(get_conf_path()) as file:
+        config_data = json.load(file)
+    model_file_name = config_data['model_file_name']
+    return model_file_name
+
+
 def get_start_data(path=None) -> int:
     with open(get_conf_path()) as file:
         config_data = json.load(file)
@@ -105,7 +112,7 @@ def get_conf_path(path=None, only_root_path=False) -> str:
     print(f"Это абсолютный путь до скрипта: {os.path.dirname(os.path.abspath(__file__))}")
 
     if path is None:
-        root_project_dir = os.path.dirname(os.path.abspath(__file__)) # TODO os.getcwd()
+        root_project_dir = os.path.dirname(os.path.abspath(__file__))  # TODO os.getcwd()
         while not os.path.exists(os.path.join(root_project_dir, 'project_conf.json')):
             # TODO Удалить отладку
             print(f"Проверяем этот путь {os.path.join(root_project_dir, 'project_conf.json')}")
