@@ -1,1 +1,2 @@
-include *.json
+include include project_conf.json
+recursive-include test/test_data *
