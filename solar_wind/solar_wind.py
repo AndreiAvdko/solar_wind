@@ -17,7 +17,7 @@ __all__ = ['get_forecast',
            'load_newest_data',
            'check_module_function']
 
-model_file_name = "catboost_model.pkl"
+model_file_name = "catboost_model.zip"
 
 
 def get_forecast(df: pd.DataFrame = None, with_plot: bool = False) -> pd.DataFrame:
@@ -45,7 +45,7 @@ def get_forecast(df: pd.DataFrame = None, with_plot: bool = False) -> pd.DataFra
     predict = predict.to_pandas()
     # TODO удалить
     predict.to_csv("C:\\Users\\andre\\PycharmProjects\\solar_wind\\predictions\\prediction.csv")
-    # # Отрисовываем график
+    # Отрисовываем график
     if with_plot:
         swu.show_df_plot("Предсказанные значения солнечного ветра", predict['segment_0']['target'])
     return predict
