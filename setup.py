@@ -8,7 +8,8 @@ setup(
     package_data={
         '': ['*.json', '*.dat', '*.csv']
     },
-    package_dir={"": "solar_wind"},
+    # package_dir={"": "solar_wind "}, возникает ошибка
+
     include_package_data=True,
     install_requires=[
         'etna',
