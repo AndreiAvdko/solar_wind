@@ -4,4 +4,4 @@ venv
 __pycache__
 original_data
 predictions
-experiments
+solar_wind/experiments

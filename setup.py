@@ -1,4 +1,5 @@
 from setuptools import setup, find_namespace_packages
+import warnings
 
 setup(
     name='solar_wind',
@@ -7,7 +8,7 @@ setup(
     packages=find_namespace_packages(),
     include_package_data=True,
     package_data={
-        '': ['*.json', '*.dat', '*.csv', '*.pkl'],
+        '': ['*.json', '*.dat', '*.csv', '*.zip'],
     },
     install_requires=[
         'etna',
@@ -20,3 +21,4 @@ setup(
         'pytest'
     ],
 )
+warnings.filterwarnings('ignore')
