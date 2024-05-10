@@ -9,7 +9,7 @@ setup(
     include_package_data=True,
     package_data={
         '': ['*.json', '*.dat', '*.csv'],
-        'test_data_validation.test_data.correct_timestamps': ['*.csv'],
+        'solar_wind.test_data_validation.test_data.correct_timestamps': ['*.csv'],
     },
     install_requires=[
         'etna',
