@@ -3,7 +3,7 @@ import shutil
 from solar_wind.sw_utils import sw_utils as swu
 
 
-test_conf_path = "\\solar_wind\\test\\test_project_conf.json"
+test_conf_path = "\\test\\test_project_conf.json"
 
 
 def test_get_conf_path():

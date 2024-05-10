@@ -5,7 +5,7 @@ from solar_wind.data_validation import DataValidator
 import pytest
 import pandas as pd
 
-testsuit_dataset_base_path = "\\solar_wind\\test\\test_data_validation\\test_data"
+testsuit_dataset_base_path = "\\test\\test_data_validation\\test_data"
 
 
 def test_check_columns():
