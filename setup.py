@@ -4,7 +4,7 @@ setup(
     name='solar_wind',
     version='0.1',
     python_requires='>=3.8.0, <3.11.0',
-    packages=find_packages(),
+    packages=find_packages(where='solar_wind'),
     package_dir={'': 'solar_wind'},
     package_data={
         # "mypkg": ["*.txt"],
