@@ -1,1 +1,7 @@
-graft test_data
+graft solar_wind
+include solar_wind/*.json
+include solar_wind/*.csv
+include solar_wind/*.dat
+recursive-include solar_wind/test_data *.json
+recursive-include solar_wind/test_data *.csv
+recursive-include solar_wind/test_data *.dat
