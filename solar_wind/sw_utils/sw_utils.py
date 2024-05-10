@@ -112,8 +112,8 @@ def get_conf_path(path=None, only_root_path=False) -> str:
             root_project_dir = os.path.dirname(root_project_dir)
         if only_root_path:
             # TODO удалить
-            print(f"Вот корневая директория проекта: {os.path.dirname(root_project_dir)}")
-            return os.path.dirname(root_project_dir)
+            print(f"Вот корневая директория проекта: {root_project_dir}")
+            return root_project_dir
         else:
             return root_project_dir + '\\project_conf.json'
     else:
