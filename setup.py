@@ -5,12 +5,9 @@ setup(
     version='0.1',
     python_requires='>=3.8.0, <3.11.0',
     packages=find_packages(),
-    package_dir={'': 'solar_wind'},
-    package_data={
-        '': ['*.json'],
-        'test_data_validation.test_data': ['*.csv', '*.dat'],
-        'solar_wind.model': ['*.pkl'],
-    },
+    package_dir={'': ''},
+    include_package_data=True,
+    
     install_requires=[
         'etna',
         'etna[auto]',
