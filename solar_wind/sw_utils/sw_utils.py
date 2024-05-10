@@ -109,6 +109,8 @@ def get_conf_path(path=None, only_root_path=False) -> str:
     if path is None:
         root_project_dir = os.path.abspath(__file__) # TODO os.getcwd()
         while not os.path.exists(os.path.join(root_project_dir, 'project_conf.json')):
+            # TODO Удалить отладку
+            print(f"Проверяем этот путь {root_project_dir}project_conf.json")
             root_project_dir = os.path.dirname(root_project_dir)
         if only_root_path:
             return root_project_dir
