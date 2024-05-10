@@ -8,6 +8,7 @@ setup(
     package_data={
         '': ['*.json', '*.dat', '*.csv']
     },
+    package_dir={"": "solar_wind"},
     include_package_data=True,
     install_requires=[
         'etna',
