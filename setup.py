@@ -7,8 +7,7 @@ setup(
     packages=find_namespace_packages(),
     include_package_data=True,
     package_data={
-        '': ['*.json', '*.dat', '*.csv'],
-        # 'test_data_validation.test_data.correct_timestamps': ['*.csv'],
+        '': ['*.json', '*.dat', '*.csv', '*.pkl'],
     },
     install_requires=[
         'etna',

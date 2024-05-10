@@ -1,6 +1,8 @@
-Для установки модуля необходимо использовать следующую команду:
-'''pip install git+https://github.com/AndreiAvdko/solar_wind.git'''
+### Для установки модуля необходимо использовать следующую команду:
+```pip install git+https://github.com/AndreiAvdko/solar_wind.git'''```
 
-Для использования функций модуля:
--  import solar_wind.solar_wind as solar_wind
-- solar_wind.check_module_function()
+### Для импортирования установленного модуля
+```import solar_wind.solar_wind as sw```
+
+### Предоставляемые функции
+- ```sw.load_newest_data()```

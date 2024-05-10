@@ -12,6 +12,11 @@ from solar_wind.sw_utils import sw_utils as swu
 from etna.models import CatBoostPerSegmentModel, ElasticPerSegmentModel, LinearPerSegmentModel
 from etna.pipeline import Pipeline, AutoRegressivePipeline
 
+__all__ = ['get_forecast',
+           'additional_model_training',
+           'load_newest_data',
+           'check_module_function']
+
 model_file_name = "catboost_model.pkl"
 
 
