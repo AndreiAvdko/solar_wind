@@ -27,7 +27,6 @@ def get_forecast(df: pd.DataFrame = None, with_plot: bool = False) -> pd.DataFra
     regressors_list = swu.get_regressors_list()
     # Загружаем сохраненную модель
     pipe = load(swu.get_model_path() + swu.get_model_file_name())
-    print(pipe.to_dict())
 
     df_for_predict = DataValidator.check_and_clean_data(df, fill_missing_by_interpolate=True)
     df_for_predict = data_trsfrm.dataframe_to_TSDataset(df_for_predict,
