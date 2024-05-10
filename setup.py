@@ -5,8 +5,9 @@ setup(
     version='0.1',
     python_requires='>=3.8.0, <3.11.0',
     packages=find_packages(),
-    package_dir={'': 'solar_wind'},
-    include_package_data=True,
+    package_data={
+        '': ['*.json', '*.dat', '*.csv']
+    },
     install_requires=[
         'etna',
         'etna[auto]',
