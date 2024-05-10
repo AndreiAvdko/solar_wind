@@ -111,7 +111,7 @@ def get_conf_path(path=None, only_root_path=False) -> str:
             print(f"Проверяем этот путь {os.path.join(root_project_dir, 'project_conf.json')}")
             root_project_dir = os.path.dirname(root_project_dir)
         if only_root_path:
-            return root_project_dir
+            return os.path.dirname(root_project_dir)
         else:
             return root_project_dir + '\\project_conf.json'
     else:
