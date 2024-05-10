@@ -5,7 +5,7 @@ setup(
     version='0.1',
     python_requires='>=3.8.0, <3.11.0',
     packages=find_packages(),
-    include_package_data=True,
+    package_data={'': ['project_conf.json']},  # Включить project_conf.json
     install_requires=[
         'etna',
         'etna[auto]',
