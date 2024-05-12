@@ -39,16 +39,4 @@ def dataframe_to_TSDataset(clean_df,
         ts_target = TSDataset(df_target, freq='H')
     else:
         ts_target = TSDataset(df_target, freq='H', df_exog=df_regressors)
-    # print("Выполняем импутацию пропусков")
-    # выполняем импутацию пропусков
-    # imputer = TimeSeriesImputerTransform(in_column='target',
-    #                                      strategy='running_mean')
-    # ts_target.fit_transform([imputer])
-    #
-    # if regressors_list:
-    #     for i in range(len(regressors_list) - 1):
-    #         imputer = TimeSeriesImputerTransform(in_column=f"regressor_{i}_{regressors_list[i + 1]}",
-    #                                              strategy='running_mean')
-    #         ts_target.fit_transform([imputer])
-
     return ts_target

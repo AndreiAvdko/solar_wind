@@ -63,7 +63,7 @@ def load_df_with_original_data(start=swu.get_start_data(),
                                path=swu.get_original_data_path()):
     """
     Функция получения датафрейма из загруженных данных о солнечном ветре
-    :param start: Начальный год данных
+    :param start: Начальный год данных, по умолчанию используется год, указанный в конфигурационном файле модуля
     :param year_count: количество лет за которые нужно загрузить данные, начиная с даты start
     :param path: указание пути для данных, по умолчанию данные скачиваются и загружаются в папки проекта
     :return: DataFrame
@@ -75,10 +75,4 @@ def load_df_with_original_data(start=swu.get_start_data(),
         if year_count == 1: break
         df_hplot = sw.omnie_hourly(start + i + 1, cache=True, local_path=path)
         original_data_df = pd.concat([original_data_df, df_hplot])
-
-    # # TODO удалить функциональность отрисовки графика
-    # # отрисовываем график
-    # plt.plot(original_data_df[["v_plasma"]])
-    # plt.title(f"Значения скорости солнечного ветра за {start} - {start + year_count} гг.")
-    # plt.show()
     return original_data_df

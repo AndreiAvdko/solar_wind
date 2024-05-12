@@ -1,6 +1,6 @@
 from solar_wind.load_trainig_data import load_training_data
 from solar_wind.sw_utils import sw_utils as swu
-import pandas as pd
+import os
 
 
 def test_load_df_with_original_data():
