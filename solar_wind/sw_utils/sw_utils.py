@@ -7,6 +7,10 @@ from matplotlib import pyplot as plt
 
 
 def get_original_data_path(path=None):
+    """
+    Функция получения пути к файлам с исходными данными формата .dat из файла конфигурации
+    :return: path:String
+    """
     current_directory = get_conf_path(only_root_path=True)
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
@@ -16,6 +20,10 @@ def get_original_data_path(path=None):
 
 
 def get_clean_data_path(path=None):
+    """
+    Функция получения пути к директории на диске для хранения очищенных данных из файла конфигурации
+    :return: path:String
+    """
     current_directory = get_conf_path(only_root_path=True)
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
@@ -25,6 +33,10 @@ def get_clean_data_path(path=None):
 
 
 def get_model_path(path=None):
+    """
+    Функция получения пути к директории с архивом модели машинного обучения для получения прогноза из файла конфигурации
+    :return: path:String
+    """
     current_directory = get_conf_path(only_root_path=True)
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
@@ -34,6 +46,10 @@ def get_model_path(path=None):
 
 
 def get_prediction_artefacts_path(path=None):
+    """
+    Функция получения пути к директории для сохранения артефактов предсказания из файла конфигурации
+    :return: path:String
+    """
     current_directory = get_conf_path(only_root_path=True)
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
@@ -43,6 +59,10 @@ def get_prediction_artefacts_path(path=None):
 
 
 def get_model_file_name():
+    """
+    Функция получения названия файла с моделью машинного обучения из файла конфигурации
+    :return: filename:String
+    """
     with open(get_conf_path()) as file:
         config_data = json.load(file)
     model_file_name = config_data['model_file_name']
@@ -50,6 +70,10 @@ def get_model_file_name():
 
 
 def get_start_data(path=None) -> int:
+    """
+    Функция получения начальной даты для загрузки исходных данных о солнечном ветре из файла конфигурации
+    :return: start_year:String
+    """
     with open(get_conf_path()) as file:
         config_data = json.load(file)
     start_year = config_data['start_year_loaded_data']
@@ -57,6 +81,10 @@ def get_start_data(path=None) -> int:
 
 
 def get_predict_horizon() -> int:
+    """
+    Функция получения значения горизонта прогнозирования из файла конфигурации
+    :return: predict_horizon:String
+    """
     with open(get_conf_path()) as file:
         config_data = json.load(file)
     predict_horizon = config_data['predict_horizon']
@@ -89,7 +117,7 @@ def get_target_list(path=None):
 
 def get_regressors_list(path=None):
     """
-    Метод получения списка названий обязательных колонок с данными для обучения модели или получения предсказания
+    Метод получения списка названий обязательных колонок с данными для обучения модели или получения предсказания из файла конфигурации
     :return: List[String]
     """
     with open(get_conf_path(path)) as file:
@@ -99,6 +127,10 @@ def get_regressors_list(path=None):
 
 
 def get_upper_bound_outliers(path=None):
+    """
+    Функция получения допустимых максимальных значений для переменных из файла конфигурации
+    :return: List[String]
+    """
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
     upper_bound = config_data['upper_bound_validate']
@@ -106,6 +138,11 @@ def get_upper_bound_outliers(path=None):
 
 
 def get_lower_bound_outliers(path=None):
+    """
+     Функция получения допустимых минимальных значений для переменных из файла конфигурации
+    :param path:
+    :return:
+    """
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
     lower_bound = config_data['lower_bound_validate']
@@ -113,11 +150,20 @@ def get_lower_bound_outliers(path=None):
 
 
 def create_folder_if_not_exist(folder_path):
+    """
+    Функция создания директории в случае ее отсутствия на диске
+    :param folder_path: путь к директории
+    """
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 
 
 def get_conf_path(path=None, only_root_path=False) -> str:
+    """
+    Функция получения пути к файлу с конфигурацией модуля
+    :param only_root_path: Если True - получение абсолютного пути к корню проекта, если False - получение абсолютного пути к файлу с конфигурацией
+    :return: path:String
+    """
     if path is None:
         root_project_dir = os.path.dirname(os.path.abspath(__file__))
         while not os.path.exists(os.path.join(root_project_dir, 'project_conf.json')):
@@ -130,8 +176,16 @@ def get_conf_path(path=None, only_root_path=False) -> str:
         return path
 
 
-# TODO метод для отрисовки графика
+
 def show_df_plot(plot_title, prediction_df, df_with_was_predicted, real_values: pd.DataFrame = None):
+    """
+
+    :param plot_title: Название графика
+    :param prediction_df: pandas.DataFrame c предсказанием
+    :param df_with_was_predicted: pandas.DataFrame c данными для предсказания
+    :param real_values: [OPTIONAL] pandas.DataFrame с реальными значениями, для отображения их на графике, применимо для тестирования функциональности модуля
+    :return:
+    """
     plt.plot(prediction_df,
              label="Предсказанные значения")
     plt.plot(df_with_was_predicted["v_plasma"].tail(20),

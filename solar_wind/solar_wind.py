@@ -6,8 +6,6 @@ from solar_wind.data_validation import DataValidator
 from solar_wind.data_trasformer import data_transformer as data_trsfrm
 from solar_wind.sw_utils import sw_utils as swu
 from solar_wind.sw_utils.sw_utils import ignore_warnings
-from etna.models import CatBoostPerSegmentModel, ElasticPerSegmentModel, LinearPerSegmentModel
-from etna.pipeline import Pipeline, AutoRegressivePipeline
 
 
 @ignore_warnings
@@ -19,7 +17,7 @@ def get_forecast(df: pd.DataFrame = None,
     :param df: pandas.DataFrame с данными для которых нужно получить предсказание
     :param with_plot: Опциональный параметр отрисовки графика с предсказаннием,
                       по умолчанию график не отрисовывается
-    :return: pandas.DataFrame с предсказанными значениями
+    :return: pandas.DataFrame c прогнозом
     """
     if df is None:
         df = DataValidator.check_and_clean_data(lt_data.load_df_with_original_data())
@@ -35,7 +33,7 @@ def get_forecast(df: pd.DataFrame = None,
 
     predict = pipe.forecast(df_for_predict)
     predict = predict.to_pandas()
-    # Отрисовываем график
+    # Отрисовка графика
     if with_plot:
         swu.show_df_plot(plot_title="Предсказанные значения солнечного ветра",
                          prediction_df=predict['segment_0']['target'],

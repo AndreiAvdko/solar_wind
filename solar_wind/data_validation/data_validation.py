@@ -14,7 +14,7 @@ class DataValidator:
     @staticmethod
     def check_and_clean_data(df: pd.DataFrame, fill_missing_by_interpolate=False) -> pd.DataFrame:
         """
-        Последовательный вызов методов для проверки данных
+        Функция выполняющая последовательную проверку исходных данных,
         Args:
         df (pd.Dataframe): Параметр, представляющий собой dataframe с данными о солнечном ветре.
         fill_missing_by_interpolate (bool): Заполнять ли пропущенные значения линейной интерполяцией

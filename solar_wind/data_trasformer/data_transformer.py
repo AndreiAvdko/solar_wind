@@ -7,6 +7,7 @@ def dataframe_to_TSDataset(clean_df,
                            target_list,
                            regressors_list) -> TSDataset:
     """
+    Функция преобразования исходного dataframe с данными в формат данных фреймворка ETNA
     :param clean_df: pandas dataframe с исходными данными
     :param target_list: список целевой переменной для предсказания
     :param regressors_list: список переменных регрессоров
