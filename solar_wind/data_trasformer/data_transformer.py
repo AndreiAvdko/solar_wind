@@ -1,6 +1,7 @@
+import warnings
+warnings.filterwarnings('ignore')
 from etna.datasets.tsdataset import TSDataset
 import pandas as pd
-from etna.transforms import TimeSeriesImputerTransform
 
 
 def dataframe_to_TSDataset(clean_df,

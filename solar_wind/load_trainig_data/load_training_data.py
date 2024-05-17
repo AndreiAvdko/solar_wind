@@ -1,6 +1,7 @@
+import warnings
+warnings.filterwarnings('ignore')
 import os
 import datetime
-import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 import spaceweather as sw

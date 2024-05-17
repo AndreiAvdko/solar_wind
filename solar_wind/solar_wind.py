@@ -1,3 +1,5 @@
+import warnings
+warnings.filterwarnings('ignore')
 import datetime
 import pandas as pd
 from etna.core import load

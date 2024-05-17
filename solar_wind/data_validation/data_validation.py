@@ -1,3 +1,5 @@
+import warnings
+warnings.filterwarnings('ignore')
 from solar_wind.custom_exception import MissingColumnsError, IncorrectTimestamps
 import datetime
 import pandas as pd
