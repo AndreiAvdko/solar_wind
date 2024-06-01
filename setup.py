@@ -15,7 +15,7 @@ setup(
         'spaceweather',
         'pandas',
         'numpy',
-        'matplotlib',
+        'matplotlib==3.5.2',
         'requests',
         'pytest'
     ],
