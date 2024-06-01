@@ -1,8 +1,8 @@
 {
-  "original_data_path": "\\original_data\\",
-  "clean_data_path": "\\clean_data\\",
-  "training_model_path": "\\model\\",
-  "prediction_artefacts_path": "\\predictions\\",
+  "original_data_path": "original_data",
+  "clean_data_path": "clean_data",
+  "training_model_path": "model",
+  "prediction_artefacts_path": "predictions",
   "model_file_name": "catboost_model.zip",
   "predict_horizon": 72,
   "start_year_loaded_data": 2000,

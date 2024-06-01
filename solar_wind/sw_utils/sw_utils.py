@@ -8,6 +8,7 @@ import warnings
 from matplotlib import pyplot as plt
 
 
+
 def get_original_data_path(path=None):
     """
     Функция получения пути к файлам с исходными данными формата .dat из файла конфигурации
@@ -16,7 +17,10 @@ def get_original_data_path(path=None):
     current_directory = get_conf_path(only_root_path=True)
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
-    original_data_path = current_directory + config_data['original_data_path']
+    original_data_path = (current_directory +
+                          get_delimiter() +
+                          config_data['original_data_path'] +
+                          get_delimiter())
     create_folder_if_not_exist(original_data_path)
     return original_data_path
 
@@ -29,7 +33,10 @@ def get_clean_data_path(path=None):
     current_directory = get_conf_path(only_root_path=True)
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
-    clean_data_path = current_directory + config_data['clean_data_path']
+    clean_data_path = (current_directory +
+                       get_delimiter() +
+                       config_data['clean_data_path'] +
+                       get_delimiter())
     create_folder_if_not_exist(clean_data_path)
     return clean_data_path
 
@@ -42,7 +49,10 @@ def get_model_path(path=None):
     current_directory = get_conf_path(only_root_path=True)
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
-    training_model_path = current_directory + config_data['training_model_path']
+    training_model_path = (current_directory +
+                           get_delimiter() +
+                           config_data['training_model_path'] +
+                           get_delimiter())
     create_folder_if_not_exist(training_model_path)
     return training_model_path
 
@@ -55,7 +65,10 @@ def get_prediction_artefacts_path(path=None):
     current_directory = get_conf_path(only_root_path=True)
     with open(get_conf_path(path)) as file:
         config_data = json.load(file)
-    prediction_artefacts_path = current_directory + config_data['prediction_artefacts_path']
+    prediction_artefacts_path = (current_directory +
+                                 get_delimiter() +
+                                 config_data['prediction_artefacts_path'] +
+                                 get_delimiter())
     create_folder_if_not_exist(prediction_artefacts_path)
     return prediction_artefacts_path
 
@@ -200,6 +213,14 @@ def show_df_plot(plot_title, prediction_df, df_with_was_predicted, real_values: 
     plt.savefig(f'{get_prediction_artefacts_path()}prediction_plot_{datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")}.png')
     plt.show()
 
+
+
+def get_delimiter():
+    delimiter = {"linux_delimiter": "/", "windows_delimiter": "\\"}
+    if (os.name == "nt"):
+        return delimiter.get('windows_delimiter')
+    else:
+        return delimiter.get('linux_delimiter')
 
 
 def ignore_warnings(func):
