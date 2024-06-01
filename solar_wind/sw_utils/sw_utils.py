@@ -186,7 +186,9 @@ def get_conf_path(path=None, only_root_path=False) -> str:
         if only_root_path:
             return root_project_dir
         else:
-            return root_project_dir + '\\project_conf.json'
+            return (root_project_dir +
+                    get_delimiter() +
+                    'project_conf.json')
     else:
         return path
 
