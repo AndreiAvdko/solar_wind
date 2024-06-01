@@ -21,8 +21,9 @@ def get_forecast(df: pd.DataFrame = None,
                       по умолчанию график не отрисовывается
     :return: pandas.DataFrame c прогнозом
     """
-    if df is None:
-        df = DataValidator.check_and_clean_data(lt_data.load_df_with_original_data())
+    # TODO удалить
+    # if df is None:
+    #     df = DataValidator.check_and_clean_data(lt_data.load_df_with_original_data())
     target_list = swu.get_target_list()
     regressors_list = swu.get_regressors_list()
     # Загружаем сохраненную модель
