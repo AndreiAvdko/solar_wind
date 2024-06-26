@@ -204,12 +204,12 @@ def show_df_plot(plot_title, prediction_df, df_with_was_predicted, real_values: 
     :return:
     """
     plt.plot(prediction_df,
-             label="Предсказанные значения")
+             label="Предсказанные значения", color='red')
     plt.plot(df_with_was_predicted["v_plasma"].tail(20),
-             label='Последние известные значения')
+             label='Последние известные значения', color='black')
     if real_values is not None:
         plt.plot(real_values["v_plasma"],
-                 label='Реальные значения')
+                 label='Реальные значения',  color='blue')
     plt.title(plot_title)
     plt.legend()
     plt.savefig(f'{get_prediction_artefacts_path()}prediction_plot_{datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")}.png')
