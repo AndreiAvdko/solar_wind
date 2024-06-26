@@ -33,7 +33,7 @@ def get_forecast(df: pd.DataFrame = None,
     df_for_predict = data_trsfrm.dataframe_to_TSDataset(df_for_predict,
                                                         target_list=target_list,
                                                         regressors_list=regressors_list)
-    print("Получаем предсказание, это может занять какое-то время...")
+    print("Получаем прогноз, это может занять какое-то время...")
     pipe.fit(df_for_predict)
     predict = pipe.forecast(df_for_predict)
     predict = predict.to_pandas()
