@@ -34,6 +34,7 @@ def get_forecast(df: pd.DataFrame = None,
                                                         target_list=target_list,
                                                         regressors_list=regressors_list)
     print("Получаем предсказание, это может занять какое-то время...")
+    pipe.fit(df_for_predict)
     predict = pipe.forecast(df_for_predict)
     predict = predict.to_pandas()
     # Отрисовка графика
